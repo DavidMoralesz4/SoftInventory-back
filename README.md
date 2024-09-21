@@ -1,7 +1,7 @@
 # Proyecto Backend de E-commerce
 
 ### Descripción
-Este proyecto es un sistema backend que implementa un sistema CRUD para una tienda de comercio electrónico. Está desarrollado con **Node.js**, **Express**, **TypeScript** y utiliza **MongoDB** como base de datos. La API es capaz de gestionar clientes, productos y órdenes. En el futuro, se integrará con un bot de IA para automatizar ciertos aspectos del sistema.
+Este proyecto es un backend que implementa un sistema CRUD para tiendas de comercio de todo tipo. Está desarrollado con **Node.js**, **Express**, **TypeScript** y utiliza **MongoDB** como base de datos. La API es capaz de gestionar clientes, productos y órdenes. En el futuro, se integrará con un bot de IA para automatizar ciertos aspectos del sistema.
 
 #### Funcionalidades principales:
 - Gestión de **clientes**.
@@ -17,7 +17,19 @@ Este proyecto es un sistema backend que implementa un sistema CRUD para una tien
 - **Mongoose**
 - **Jest** (para pruebas)
 
----
+### Endpoints
+###  Clientes
+#### Obtener Info y crear los clientes:
+- **GET /api/clients**
+- **POST /api/clients/create**
+#### Obtener Info y crear las órdenes:
+- **GET /api/order**
+- **POST /api/order/create**
+#### Obtener Info y crear los productos:
+- **GET /api/products**
+- **POST /api/products/create**
+- **GET /api/products/:id**
+
 
 ## Requisitos previos
 
@@ -29,5 +41,4 @@ Asegúrate de tener instalado lo siguiente en tu sistema:
 
 ---
 
-## Instalación
 
