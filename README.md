@@ -18,7 +18,6 @@ Este proyecto es un backend que implementa un sistema CRUD para tiendas de comer
 - **Jest** (para pruebas)
 
 ### Endpoints
-###  Clientes
 #### Obtener Info y crear los clientes:
 - **GET /api/clients**
 - **POST /api/clients/create**
