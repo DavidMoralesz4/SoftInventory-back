@@ -1,7 +1,6 @@
 import { dbconf } from "./config/dbConf";
+import { PORT } from "./config/envs";
 import { server } from "./server";
-
-const PORT = 5000;
 
 dbconf().then((res) => {
   server.listen(PORT,() => {
