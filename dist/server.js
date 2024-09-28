@@ -12,7 +12,7 @@ const productsRouter_1 = require("./routes/productsRouter");
 const cors_1 = __importDefault(require("cors"));
 exports.server = (0, express_1.default)();
 const corsOptions = {
-    origin: "https://softinventory-back-production.up.railway.app",
+    origin: "http://localhost:3000",
     optionsSuccesStatus: 200,
     methods: "GET, POST, PUT, DELETE", // metodos que podre ejecutar en mi front
     allowedHeaders: "Content-Type, Authorization", // esto me dara autorizacion al mi front
