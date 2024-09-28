@@ -2,6 +2,21 @@ import { Client } from "../models/Clients";
 import { Order } from "../models/Orders";
 import { Product } from "../models/Products";
 
+interface ClientData {
+  first_name: string;
+  last_name: string;
+  document: string;
+  email: string;
+  phone: number;
+  address: string;
+}
+
+
+
+type Status = {
+  status: "Pendiente" | "Pago" | "Rechazado"
+}
+
 export const getOrderService = async() => {
     const orders = await Order.find()
     .populate({
@@ -18,12 +33,24 @@ export const getOrderService = async() => {
     return orders
 }
 
-export const createOrderService = async (document: string, product_ids: string[]) => {
+export const createOrderService = async (document: string, product_ids: string[], dataClient?: ClientData) => {
     try {
       // Verificar si el cliente existe
-      const client = await Client.findOne({ document });
+      let client = await Client.findOne({ document });
+      if (!client && dataClient) {
+        client = new Client({
+          first_name: dataClient.first_name,
+          last_name: dataClient.first_name,
+          document: dataClient.document,
+          address: dataClient.address,
+          email: dataClient.email,
+          phone: dataClient.phone
+        })
+        return client.save()
+      }
+
       if (!client) {
-        throw new Error("Usuario no encontrado, Por favor crea uno");
+        throw new Error("No se proporcionaron datos para crear el cliente");
       }
   
       // Obtener el producto por su id
@@ -44,7 +71,7 @@ export const createOrderService = async (document: string, product_ids: string[]
       const order = new Order({
         client_id: client._id,
         product_ids: products.map((product) => product._id),
-        status: "Pendiente",
+        status: ["Pendiente", "Pago", "Rechazado"],
         total: total, // Asignamos el total calculado
       });
   

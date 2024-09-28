@@ -4,6 +4,7 @@ import { createNewProduct, getProductId, getProductsController } from "../contro
 export const productsRouter = Router()
 
 productsRouter.get("/products", getProductsController)
+
 productsRouter.post("/products/create", createNewProduct)
 
 productsRouter.get("/products/:id", getProductId)

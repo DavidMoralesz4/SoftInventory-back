@@ -15,21 +15,20 @@ export const getOrderController = async (req: Request, res: Response) => {
   }
 };
 
-export const orderCrontroller = async (req: Request, res: Response) => {
+export const orderController = async (req: Request, res: Response) => {
   try {
-    const { documento, product_ids } = req.body;
+    const { documento, product_ids, dataClient } = req.body; // Extraemos los datos del cliente en caso de que sea necesario
 
-    if (!documento && !product_ids) {
-      res.status(500).json({ message: "Faltan campos requeridos" });
+    // Verificar si los campos obligatorios están presentes
+    if (!documento || !product_ids) {
+      return res.status(400).json({ message: "Faltan campos requeridos" });
     }
 
-    if (!documento) {
-      res.status(500).json({ message: "Ingresa numero de documento" });
-    }
-
-    const order = await createOrderService(documento, product_ids);
-    res.status(201).json({ message: "Orden creada con exito" });
+    // Llamamos al servicio para crear la orden, pasando los datos del cliente en caso de que no exista
+    const order = await createOrderService(documento, product_ids, dataClient);
+    
+    return res.status(201).json({ message: "Orden creada con éxito", order });
   } catch (error: any) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
