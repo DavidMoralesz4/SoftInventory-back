@@ -50,7 +50,7 @@ export const createOrderService = async (document: string, product_ids: string[]
       }
 
       if (!client) {
-        throw new Error("No se proporcionaron datos para crear el cliente");
+        throw new Error("Este cliente no existe, por favor crea uno");
       }
   
       // Obtener el producto por su id
@@ -74,8 +74,7 @@ export const createOrderService = async (document: string, product_ids: string[]
         status: ["Pendiente", "Pago", "Rechazado"],
         total: total, // Asignamos el total calculado
       });
-  
-  
+      
       await order.save();
   
       return order;
