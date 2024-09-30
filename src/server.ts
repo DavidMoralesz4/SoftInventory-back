@@ -8,10 +8,11 @@ import cors from "cors";
 export const server = express();
 
 const corsOptions = {
-  origin: ["https://empowering-gentleness-production.up.railway.app", "http://localhost:3000"],
-  optionsSuccesStatus: 200,
-  methods: "GET, POST, PUT, DELETE", // metodos que podre ejecutar en mi front
-  allowedHeaders: "Content-Type, Authorization", // esto me dara autorizacion al mi front
+  origin: ["https://empowering-gentleness-production.up.railway.app", "http://localhost:3000"], // Dominios permitidos
+  optionsSuccessStatus: 200, // Corrige el nombre de esta opción (es `optionsSuccessStatus`, no `optionsSuccesStatus`)
+  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
+  credentials: true, // Permite enviar cookies o autenticación (si es necesario)
 };
 
 server.use(cors(corsOptions));
