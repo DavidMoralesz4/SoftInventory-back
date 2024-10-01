@@ -8,7 +8,7 @@ import cors from "cors";
 export const server = express();
 
 const corsOptions = {
-  origin: "*", // Dominios permitidos
+  origin: ["https://empowering-gentleness-production.up.railway.app", "http://localhost:3000"], // Dominios permitidos
   optionsSuccessStatus: 200, // Corrige el nombre de esta opción (es `optionsSuccessStatus`, no `optionsSuccesStatus`)
   methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
   allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
