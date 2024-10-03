@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
-import { createOrderService, getOrderService } from "../services/orderService";
+import { createOrderService, getOrderService, updateOrderService } from "../services/orderService";
+import mongoose from "mongoose";
 
 export const getOrderController = async (req: Request, res: Response) => {
   try {
@@ -15,6 +16,20 @@ export const getOrderController = async (req: Request, res: Response) => {
   }
 };
 
+export const updateStatusOrderController = async (req: Request, res: Response) => {
+  const {order_id} = req.params
+  const {status} = req.body
+  
+    const updateOrder = await updateOrderService(status, order_id)
+
+    res.status(200).json({message: 'Orden actualizada exitozamente', data: updateOrder});
+
+
+  if (!updateOrder) {
+    return res.status(404).json({ message: 'Oreden no encontrada' });
+  }
+}
+ 
 export const orderController = async (req: Request, res: Response) => {
   try {
     const { documento, product_ids, dataClient } = req.body; // Extraemos los datos del cliente en caso de que sea necesario

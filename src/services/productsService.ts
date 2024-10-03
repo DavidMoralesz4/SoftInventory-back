@@ -22,3 +22,9 @@ export const productsId = async(id: string) => {
     const productId = Product.findById(id)
     return productId
 }
+
+
+export const deletedProductService = async(_id: string) => {
+    const productDeleted = Product.deleteOne({_id})
+    return productDeleted
+}

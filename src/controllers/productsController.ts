@@ -3,6 +3,7 @@ import {
   getProducts,
   createProducts,
   productsId,
+  deletedProductService,
 } from "../services/productsService";
 
 export const getProductsController = async (req: Request, res: Response) => {
@@ -29,6 +30,15 @@ export const createNewProduct = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({ errro: "Error al crear producto" });
   }
+};
+
+export const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const deleted = await deletedProductService(id);
+
+    res.status(201).json({message: "Producto eliminado con exito"});
+  } catch (error) {}
 };
 
 export const getProductId = async (req: Request, res: Response) => {
